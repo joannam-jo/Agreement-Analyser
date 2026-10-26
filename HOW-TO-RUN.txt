@@ -1,0 +1,76 @@
+AGREEMENT ANALYZER - HOW TO RUN THE CODE
+========================================
+
+MCA Mini Project, Semester III
+Ms. Joanna Mohapatra, Roll No. 17030925025
+Internal Mentor: Dr. Kirti Wankhede
+
+
+REQUIREMENTS
+------------
+Node.js 20 or later. Nothing else. No API key, no database and no paid
+service are needed: document reading, risk analysis, semantic retrieval and
+the explanations all run on the machine.
+
+
+RUNNING IT
+----------
+From this folder:
+
+    npm install
+    npm run build --workspace=@faa/shared
+
+Then, in two terminals:
+
+    npm run dev --workspace=@faa/backend     (API on http://localhost:4000)
+    npm run dev --workspace=@faa/frontend    (Web on http://localhost:3000)
+
+Open http://localhost:3000 and upload one of the files in samples/.
+
+On the very first start the backend downloads the sentence embedding model
+(all-MiniLM-L6-v2, about 23 MB) once. After that it runs offline.
+
+
+TRYING IT WITH THE SAMPLES
+--------------------------
+samples/risky-loan-agreement.pdf    predatory loan; trust score 0 of 100
+samples/fair-education-loan.txt     a fair agreement; 70 of 100
+samples/hindi-loan-agreement.jpg    a photograph, read in Hindi
+samples/photo-loan-agreement.jpg    a photograph, read in English
+samples/scanned-loan-agreement.pdf  a scan with no text layer
+samples/loan-agreement.docx         Word format
+samples/loan-agreement-legacy.doc   older Word format
+
+Worth looking at: the true cost panel on the predatory sample shows 24 per
+cent advertised against 42.8 per cent actual, and the Model Performance page
+shows the measured accuracy of the learned components.
+
+
+CHECKING IT WORKS
+-----------------
+    npm test --workspace=@faa/backend
+
+37 automated tests covering user isolation, encryption at rest, document
+reading, the risk rules, semantic retrieval and the document type classifier.
+
+    npm run evaluate --workspace=@faa/backend
+
+Re-measures the learned components by cross validation and refreshes the
+figures behind the Model Performance page.
+
+
+WHERE THE INTERESTING CODE IS
+-----------------------------
+backend/src/services/riskRules.ts            the 27 risk rules
+backend/src/services/riskClassifier.service.ts   scoring and agreement check
+backend/src/services/ocr.service.ts          reading PDFs, scans and photos
+backend/src/services/chunking.service.ts     splitting text into passages
+backend/src/services/embedding.service.ts    the embedding model
+backend/src/services/semanticIndex.service.ts    the encrypted vector index
+backend/src/services/documentType.service.ts     loan / lease / credit card
+backend/src/services/riskEvaluation.service.ts   rules measured against a
+                                                 learned classifier
+backend/src/lib/crypto.ts                    AES-256-GCM at rest
+shared/src/loanMath.ts                       instalment and true annual rate
+
+README.md has the full description, the architecture and the security design.

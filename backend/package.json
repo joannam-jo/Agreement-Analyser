@@ -1,0 +1,48 @@
+{
+  "name": "@faa/backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build --prefix ../shared && tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "tsx --test src/__tests__/*.test.ts",
+    "samples": "tsx scripts/make-samples.ts",
+    "typecheck": "tsc --noEmit",
+    "evaluate": "tsx scripts/evaluate.ts"
+  },
+  "dependencies": {
+    "@clerk/express": "^2.1.72",
+    "@faa/shared": "*",
+    "@google-cloud/vision": "^4.3.2",
+    "@huggingface/transformers": "^4.3.0",
+    "@napi-rs/canvas": "^1.0.9",
+    "@supabase/supabase-js": "^2.49.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.12.3",
+    "multer": "^2.4.0",
+    "openai": "^4.77.0",
+    "pdfjs-dist": "^6.3.289",
+    "sharp": "^0.35.4",
+    "tesseract.js": "^5.1.1",
+    "uuid": "^11.0.5",
+    "word-extractor": "^1.0.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.5",
+    "@types/uuid": "^10.0.0",
+    "docx": "^9.7.2",
+    "pdf-lib": "^1.17.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

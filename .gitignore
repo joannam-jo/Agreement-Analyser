@@ -1,0 +1,28 @@
+node_modules
+.next
+dist
+.env
+.env.local
+*.log
+.DS_Store
+coverage
+.turbo
+
+# Encrypted local data and dev encryption key
+.data
+backend/.data
+
+# Local tool state
+.freebuff
+
+# OCR language data cache
+*.traineddata
+
+# Public demo build
+frontend/.next-public
+frontend/.next-build2
+
+# Public demo runtime files
+PUBLIC-LINK.txt
+public-demo/logs/
+

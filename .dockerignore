@@ -1,0 +1,14 @@
+**/node_modules
+**/.next
+**/dist
+**/.data
+**/.env
+**/.env.local
+**/*.traineddata
+.git
+.claude
+.freebuff
+**/.next-public
+**/.next-build2
+**/PUBLIC-LINK.txt
+**/public-demo/logs

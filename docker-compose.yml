@@ -1,0 +1,40 @@
+# Local production-like run:  docker compose up --build
+# Create a .env file next to this one (see backend/.env.example). For a local demo only
+# DATA_ENCRYPTION_KEY is required; without Clerk keys the stack runs in single-user demo mode.
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      # Demo mode (no Clerk). Set NODE_ENV=production together with the Clerk keys for real accounts.
+      NODE_ENV: ${NODE_ENV:-development}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      DATA_ENCRYPTION_KEY: ${DATA_ENCRYPTION_KEY:?Set DATA_ENCRYPTION_KEY in .env}
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      CLERK_PUBLISHABLE_KEY: ${CLERK_PUBLISHABLE_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OCR_LANGS: ${OCR_LANGS:-eng}
+    volumes:
+      - agreement-data:/data
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${CLERK_PUBLISHABLE_KEY:-}
+    environment:
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  agreement-data:

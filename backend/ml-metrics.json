@@ -1,0 +1,202 @@
+{
+  "generatedAt": "2026-10-04T14:47:18.065Z",
+  "documentType": {
+    "model": "all-MiniLM-L6-v2",
+    "method": "k-nearest-neighbour (k=3), leave-one-out cross-validation",
+    "sampleSize": 48,
+    "accuracy": 0.917,
+    "perLabel": {
+      "personal-loan": {
+        "precision": 1,
+        "recall": 0.667,
+        "f1": 0.8,
+        "support": 12
+      },
+      "education-loan": {
+        "precision": 0.75,
+        "recall": 1,
+        "f1": 0.857,
+        "support": 12
+      },
+      "lease": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "support": 12
+      },
+      "credit-card": {
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "support": 12
+      }
+    },
+    "confusion": {
+      "personal-loan": {
+        "personal-loan": 8,
+        "education-loan": 4,
+        "lease": 0,
+        "credit-card": 0,
+        "unknown": 0
+      },
+      "education-loan": {
+        "personal-loan": 0,
+        "education-loan": 12,
+        "lease": 0,
+        "credit-card": 0,
+        "unknown": 0
+      },
+      "lease": {
+        "personal-loan": 0,
+        "education-loan": 0,
+        "lease": 12,
+        "credit-card": 0,
+        "unknown": 0
+      },
+      "credit-card": {
+        "personal-loan": 0,
+        "education-loan": 0,
+        "lease": 0,
+        "credit-card": 12,
+        "unknown": 0
+      }
+    }
+  },
+  "risk": {
+    "sampleSize": 40,
+    "approaches": [
+      {
+        "name": "Rule engine (27 rules)",
+        "accuracy": 0.8,
+        "precision": 0.875,
+        "recall": 0.7,
+        "f1": 0.778,
+        "truePositives": 14,
+        "falsePositives": 2,
+        "trueNegatives": 18,
+        "falseNegatives": 6
+      },
+      {
+        "name": "Embedding k-NN (k=3, LOO)",
+        "accuracy": 0.45,
+        "precision": 0.45,
+        "recall": 0.45,
+        "f1": 0.45,
+        "truePositives": 9,
+        "falsePositives": 11,
+        "trueNegatives": 9,
+        "falseNegatives": 11
+      }
+    ],
+    "disagreements": [
+      {
+        "text": "The lender may revise the rate of interest at its sole discretion without notice to the borrower.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "The borrower grants the lender access to the contacts, photographs and location stored on the borrower's mobile device.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "This agreement shall renew automatically for successive twelve-month periods unless cancelled thirty days in advance.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "The borrower authorises the employer to deduct the instalment directly from the borrower's monthly salary.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "All disputes shall be referred to arbitration at a seat chosen by the lender and the borrower waives the right to approach any court.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "Liquidated damages equal to three months' instalments shall be payable if the borrower terminates this agreement early.",
+        "expected": "harmful",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "The borrower shall have no right to dispute any charge debited to the account after a period of seven days.",
+        "expected": "harmful",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "No prepayment penalty shall be charged if the borrower repays the loan in full before the end of the tenure.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The rate of interest is fixed at 9.5% per annum for the entire tenure and shall not be revised.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The lender shall provide a statement of account to the borrower on the first day of every month without charge.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "A grace period of fifteen days is allowed after the due date before any late payment charge is levied.",
+        "expected": "benign",
+        "rules": "harmful",
+        "embeddings": "benign"
+      },
+      {
+        "text": "All fees and charges applicable to this facility are listed in the schedule annexed to this agreement.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "Any dispute arising under this agreement shall be subject to the jurisdiction of the courts at the borrower's place of residence.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The security deposit shall be refunded in full within thirty days of handing over vacant possession of the premises.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The borrower shall be entitled to a copy of this agreement duly signed by both parties at the time of execution.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "This loan carries no processing fee and no documentation charges of any kind.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The cardholder shall not be liable for any transaction reported as unauthorised within three days of the statement date.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      },
+      {
+        "text": "The borrower may nominate a person to receive the documents in the event of the borrower's demise.",
+        "expected": "benign",
+        "rules": "benign",
+        "embeddings": "harmful"
+      }
+    ]
+  }
+}

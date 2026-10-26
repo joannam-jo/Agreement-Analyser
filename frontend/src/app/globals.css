@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme: warm cream page, white cards, money green, friendly pastel accents. */
+  :root {
+    --background: 40 45% 97%;
+    --foreground: 220 30% 15%;
+    --card: 0 0% 100%;
+    --muted: 220 9% 40%;
+    --border: 36 22% 88%;
+    --ring: 160 94% 24%;
+
+    --ink: 28 36 51;
+    --surface: 255 255 255;
+    --shadow: 60 50 30;
+
+    --brand-trust: 4 120 87;
+    --brand-insight: 37 99 235;
+    --brand-navy: 251 248 242;
+    --brand-graphite: 244 240 233;
+    --brand-slate: 226 220 208;
+    --brand-cool: 92 99 112;
+
+    --pastel-mint: 220 245 233;
+    --pastel-sky: 225 237 255;
+    --pastel-peach: 255 234 218;
+    --pastel-lemon: 255 244 204;
+    --pastel-lilac: 238 231 255;
+    --pastel-rose: 255 228 228;
+    --pop-mint: 4 120 87;
+    --pop-sky: 29 78 216;
+    --pop-peach: 194 65 12;
+    --pop-lemon: 161 98 7;
+    --pop-lilac: 109 40 217;
+    --pop-rose: 190 18 60;
+
+    --risk-safe: 21 128 61;
+    --risk-caution: 180 83 9;
+    --risk-high: 220 38 38;
+    color-scheme: light;
+  }
+
+  /* Dark theme: warm charcoal instead of neon navy, same friendly accents. */
+  .dark {
+    --background: 222 20% 9%;
+    --foreground: 40 30% 96%;
+    --card: 220 16% 14%;
+    --muted: 220 10% 68%;
+    --border: 220 12% 22%;
+    --ring: 158 64% 52%;
+
+    --ink: 245 242 236;
+    --surface: 30 34 42;
+    --shadow: 0 0 0;
+
+    --brand-trust: 5 150 105;
+    --brand-insight: 96 165 250;
+    --brand-navy: 20 23 30;
+    --brand-graphite: 40 45 55;
+    --brand-slate: 60 66 78;
+    --brand-cool: 163 170 182;
+
+    --pastel-mint: 20 58 46;
+    --pastel-sky: 26 42 72;
+    --pastel-peach: 72 42 26;
+    --pastel-lemon: 66 56 22;
+    --pastel-lilac: 48 36 80;
+    --pastel-rose: 72 30 36;
+    --pop-mint: 110 231 183;
+    --pop-sky: 147 197 253;
+    --pop-peach: 253 186 116;
+    --pop-lemon: 253 224 71;
+    --pop-lilac: 196 181 253;
+    --pop-rose: 253 164 175;
+
+    --risk-safe: 74 222 128;
+    --risk-caution: 251 191 36;
+    --risk-high: 248 113 113;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer utilities {
+  /* Standard card surface (kept under the old class names used across the app). */
+  .glass,
+  .glass-dark {
+    @apply border border-ink/10 bg-surface shadow-soft;
+  }
+
+  /* Key numbers and brand words: solid money green, no gradient text. */
+  .text-gradient {
+    color: rgb(var(--brand-trust));
+  }
+
+  .glow-border {
+    box-shadow: none;
+  }
+}
