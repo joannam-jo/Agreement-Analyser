@@ -52,6 +52,27 @@ npm run dev --workspace=@faa/frontend
 With no keys configured the app runs in **single-user local development mode**: no sign-in, built-in
 explanations, and encrypted storage in `backend/.data`. See `backend/.env.example` for all settings.
 
+### Turn on sign-in (Clerk)
+
+Sign-in is optional. To enable accounts, create a free application at [clerk.com](https://clerk.com), then copy
+its keys from the dashboard (API Keys) into two files that are **never committed** (both are in `.gitignore`):
+
+```
+# backend/.env
+FRONTEND_URL=http://localhost:3000
+CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+
+# frontend/.env.local
+NEXT_PUBLIC_API_URL=http://localhost:4000
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+```
+
+Restart both servers. Visitors are then sent to `/sign-in`, land on the dashboard afterwards, and see an account
+menu with **Sign out** in the top bar. Each account only sees its own documents. Never put the secret key in the
+repository, in a screenshot or in chat; if it leaks, roll it in the Clerk dashboard.
+
 ### Docker
 
 ```bash

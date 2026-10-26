@@ -8,6 +8,10 @@ import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LANGUAGE_OPTIONS, useLanguage } from "@/lib/i18n";
+import { AuthControls } from "./auth-controls";
+
+// Set at build time; without a Clerk key the app runs in single-user mode and has no accounts.
+const CLERK_ENABLED = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
 const links = [
   { href: "/dashboard", label: "Dashboard" },
@@ -88,6 +92,7 @@ export function Navbar() {
           >
             {mounted && resolvedTheme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </Button>
+          {CLERK_ENABLED && <AuthControls />}
           {isMarketing && (
             <>
               <Link href="/sign-in" className="hidden sm:block">
